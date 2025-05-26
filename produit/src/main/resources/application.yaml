@@ -14,10 +14,12 @@ spring:
     show-sql: true
 
   profiles:
-    active: test  # ? Bien placé ici
+    active: test
 
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
 server:
   port: 8081
+
