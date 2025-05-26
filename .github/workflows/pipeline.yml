@@ -47,9 +47,10 @@ jobs:
         working-directory: frontend-produits
         run: npm install
 
-      - name: ✅ Lancer tests Cypress
+      - name: ✅ Lancer Cypress (avec serveur React)
         working-directory: frontend-produits
-        run: npx cypress run
+        run: |
+         npm run test:e2e
 
       - name: 🧪 Tests Postman avec Newman
         run: |
