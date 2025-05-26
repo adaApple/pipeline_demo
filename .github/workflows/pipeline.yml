@@ -35,7 +35,7 @@ jobs:
           java-version: '17'
 
       - name: ⚙️ Build backend Spring
-        working-directory: backend
+        working-directory: produit
         run: ./mvnw clean verify
 
       - name: 🟦 Setup Node.js
