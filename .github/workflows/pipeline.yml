@@ -1,0 +1,57 @@
+name: CI - Pipeline gestion-produits
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: produitsdb
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: ⬇️ Checkout du code
+        uses: actions/checkout@v3
+
+      - name: 🟨 Setup Java 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: ⚙️ Build backend Spring
+        working-directory: backend
+        run: ./mvnw clean verify
+
+      - name: 🟦 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Install frontend
+        working-directory: frontend-produits
+        run: npm install
+
+      - name: ✅ Lancer tests Cypress
+        working-directory: frontend-produits
+        run: npx cypress run
+
+      - name: 🧪 Tests Postman avec Newman
+        run: |
+          npm install -g newman
+          newman run postman/collection.json
