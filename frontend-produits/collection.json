@@ -51,12 +51,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/produits\n",
+					"raw": "http://localhost:8081/api/produits\n",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8081",
 					"path": [
 						"api",
 						"produits\n"
@@ -88,12 +88,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/produits/{{produitId}}\n",
+					"raw": "http://localhost:8081/api/produits/{{produitId}}\n",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8081",
 					"path": [
 						"api",
 						"produits",
@@ -149,12 +149,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/produits/{{produitId}}",
+					"raw": "http://localhost:8081/api/produits/{{produitId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8081",
 					"path": [
 						"api",
 						"produits",
