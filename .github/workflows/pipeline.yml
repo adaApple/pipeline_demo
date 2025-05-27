@@ -38,6 +38,13 @@ jobs:
         working-directory: produit
         run: ./mvnw clean verify
 
+      - name: 🚀 Démarrer le backend Spring Boot
+        working-directory: produit
+        run: ./mvnw spring-boot:run &
+      
+      - name: ⏳ Attente du backend sur http://localhost:8081
+        run: npx wait-on http://localhost:8081/api/produits
+      
       - name: 🟦 Setup Node.js
         uses: actions/setup-node@v3
         with:
